@@ -1,0 +1,1 @@
+from shop.products import routes
