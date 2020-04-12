@@ -1,19 +1,21 @@
 {%extends "layout.html" %}
 
 {% block content %}
-    <div class="text-center h1 text-danger">Register</div>
+    
     <div class="container">
-        {% from "_formhelpers.html" import render_field %}
-        <form method="post" enctype="multipart/form-data">
-            <div>
-                {{ render_field(form.name) }}
-                {{ render_field(form.username) }}
-                {{ render_field(form.email) }}
-                {{ render_field(form.password) }}
-                {{ render_field(form.confirm) }}
-                
-            </div>
-            <p><input type=submit value="Register" class="btn btn-info mt-2"></p>
-        </form>
+        {% include '_messages.html'%}
+            {% from "_formhelpers.html" import render_field %}
+            <div class="text-center h1 text-white bg-success p-2">Register</div>
+            <form method="post" enctype="multipart/form-data">
+                <div>
+                    {{ render_field(form.name) }}
+                    {{ render_field(form.username) }}
+                    {{ render_field(form.email) }}
+                    {{ render_field(form.password) }}
+                    {{ render_field(form.confirm) }}
+                    
+                </div>
+                <p><input type=submit value="Register" class="btn btn-info mt-2"></p>
+            </form>
     </div>
 {% endblock content %}
