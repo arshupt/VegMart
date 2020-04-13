@@ -17,8 +17,6 @@ class Addproduct(db.Model):
     image_3=db.Column(db.String(150), nullable=False, default='image.jpg')
 
     def __repr__(self):
-        return '<Addproduct %r>' % self.name
-
-
+        return '<Addproduct {}>'.format(self.name)
 
 db.create_all()

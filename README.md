@@ -21,6 +21,6 @@ This project’s idea is to implement an Online Vegetable Shopping Website.This 
     - The user can select more vegetables like this and can be added to the cart
     - The user also has options to view the cart, update the quantity or remove the item selected. To confirm the order, a button ‘Place the Order’ is available. 
 - ##### Admin:
-    The admin adds the item’s name and picture and decides the price per kilogram.  
+    The admin can add the products’s name,images of vegetable,description,stock,discount and the price per kilogram.  
 ### Expected Interfaces:
 ![Flowchart](https://user-images.githubusercontent.com/34481775/78854868-08a8d780-7a40-11ea-92cf-d71a3a08fc94.png)

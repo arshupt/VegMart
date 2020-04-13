@@ -3,11 +3,12 @@ from shop import app,db,photos
 from .forms import Addproducts
 from .models import Addproduct
 
-import secrets
+import secrets,os
 
 @app.route('/')
 def home():
-    return " "
+    products=Addproduct.query.filter(Addproduct.stock>0)
+    return render_template('/products/index.html',products=products)
 
 @app.route('/addproduct',methods=['POST','GET'])
 def addproduct():
@@ -23,6 +24,7 @@ def addproduct():
         image_3 = photos.save(request.files.get('image_3'), name=secrets.token_hex(10) + ".")
         addpro = Addproduct(name=name, price=price, discount=discount, stock=stock, desc=desc, image_1=image_1, image_2=image_2,image_3=image_3)
         db.session.add(addpro)
+        db.session.commit()
         flash(f'The vegetable {name} has been added to your database','success')
         return redirect(url_for('admin'))
     return render_template('products/addproduct.html',title="Add Product Page",form=form)
