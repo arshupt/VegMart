@@ -10,6 +10,12 @@ def home():
     products=Addproduct.query.filter(Addproduct.stock>0)
     return render_template('/products/index.html',products=products)
 
+@app.route('/product/<int:id>')
+def single_page(id):
+    product = Addproduct.query.get_or_404(id)
+    return render_template('products/single_page.html',product=product)
+
+    
 @app.route('/addproduct',methods=['POST','GET'])
 def addproduct():
     form = Addproducts(request.form)
