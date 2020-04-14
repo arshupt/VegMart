@@ -24,7 +24,7 @@
             </div>
             </li>
             <li class="nav-item">
-            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+            <a class="nav-link disabled" href="#" tabindex="-1">Cart({{session['Shoppingcart']|length}})</a>
             </li>
         </ul>
         <form class="form-inline my-2 my-lg-0">
@@ -45,19 +45,26 @@
             <p>Price :Rs {{product.price}}</p>
             <b>About</b>
             <p>{{product.desc}}</p>
-            <a href="" class="btn btn-warning">Add to Cart</a>
-        </div>
-        
+            <hr>
+            <form action="{{url_for('AddCart')}}" method="POST">
+                <input type="hidden" name="product_id" value="{{product.id}}">
+                <button type="submit" class="btn btn-sm btn-warning">Add Cart</button>
+                <label for="">Qty</label>
+                <input type="number" name="qty" id="" value="0.5" min="0.5" max="5" step="0.5">
+            </form>  
+        </div>   
     </div>
+    
     <div class="row">
         <div class="col-md-12 mt-3" id="s_image">
+            <hr>
             <img src="{{url_for('static',filename='images/' + product.image_1)}}" alt="{{product.name}}" width="120" height="120" class="p-3">
             <img src="{{url_for('static',filename='images/' + product.image_2)}}" alt="{{product.name}}" width="120" height="120" class="p-3"> 
             <img src="{{url_for('static',filename='images/' + product.image_3)}}" alt="{{product.name}}" width="120" height="120" class="p-3">
         </div>
     </div>
-
 </div>
+
 <script>
     var b_image = document.getElementById('b_image');
     var s_image = document.getElementById('s_image').getElementsByTagName('img');
@@ -68,6 +75,5 @@
         var ImageSRC = this.getAttribute('src');
         b_image.innerHTML="<img src ="+ImageSRC+" width='400' height='400'>";
     }
-
 </script>
 {% endblock content %}

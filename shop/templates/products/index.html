@@ -24,7 +24,7 @@
             </div>
             </li>
             <li class="nav-item">
-            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Cart({{session['Shoppingcart']|length}})</a>
             </li>
         </ul>
         <form class="form-inline my-2 my-lg-0">
@@ -45,8 +45,8 @@
                     <p class="text-center">Price:Rs {{product.price}}</p>
                 </div>
                 <div class="card-footer">
-                    <a href="{{url_for('single_page',id=product.id)}}" class="float-left btn btn-sm btn-primary">Details</a>
-                    <a href="#" class="float-right btn btn-sm btn-warning">Add to Cart</a>
+                    <a href="{{url_for('single_page',id=product.id)}}" class="float-left btn btn-sm btn-primary">Buy Now</a>
+                    
                 </div>
             </div>
         </div>

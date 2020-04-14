@@ -20,3 +20,4 @@ bcrypt = Bcrypt(app)
 
 from shop import admin
 from shop import products
+from shop.carts import carts
