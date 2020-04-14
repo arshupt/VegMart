@@ -15,7 +15,7 @@ def AddCart():
         qty = request.form.get('qty')
         product = Addproduct.query.filter_by(id=product_id).first()
         if product_id and qty and request.method == "POST":
-            Dict = {'name':product.name, 'price':int(product.price), 'qty':qty, 'image':product.image_1}
+            Dict = {'name':product.name, 'price':float(product.price), 'qty':qty, 'image':product.image_1}
             DictItems = {product_id: Dict}
             if 'Shoppingcart' in session:
                 print(session['Shoppingcart'])
@@ -32,3 +32,40 @@ def AddCart():
         print(e)
     finally:
         return redirect(request.referrer)
+
+@app.route('/carts')
+def getCart():
+    if 'Shoppingcart' not in session:
+        return redirect(request.referrer)
+    subtotal=0
+    grandtotal=0    
+    for key, product in session['Shoppingcart'].items():
+        subtotal+= float(product['price']) * float(product['qty'])
+        grandtotal = float("%.2f" %subtotal)
+    return render_template('/products/carts.html',grandtotal=grandtotal)
+
+@app.route('/updatecart/<int:code>', methods=['POST'])
+def updatecart(code):
+    if request.method == "POST":
+        qty = request.form.get('qty')
+        try:
+           session.modified = True
+           for key, item in session['Shoppingcart'].items():
+               if int(key) == code:
+                   item['qty']=qty
+                   return redirect(url_for('getCart')) 
+        except Exception as e:
+            print(e)
+            return redirect(url_for('getCart'))
+
+@app.route('/deletecart/<int:id>')
+def deleteitem(id):
+    try:
+        session.modified = True
+        for key, item in session['Shoppingcart'].items():
+            if int(key) == id:
+                session['Shoppingcart'].pop(key, None)
+                return redirect(url_for('getCart'))
+    except Exception as e:
+            print(e)
+            return redirect(url_for('getCart'))
