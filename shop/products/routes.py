@@ -6,7 +6,7 @@ from .models import Addproduct
 import secrets,os
 
 @app.route('/')
-def home():
+def hom():
     products=Addproduct.query.filter(Addproduct.stock>0)
     return render_template('/products/index.html',products=products)
 

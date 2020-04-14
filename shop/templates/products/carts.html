@@ -33,9 +33,13 @@
                     {% endfor %}
                     <tr>
                         <td></td>
-                        <td><a href="/">Continue Shopping</a></td>
+                        <td><a href="/" class="btn btn-sm btn-outline-success">Continue Shopping</a></td>
                         <td></td>
-                        <td colspan="3"><h4>Total : ₹ {{grandtotal}}</h4></td>
+                        <td></td>
+                        <td><h4>Total : ₹ {{grandtotal}}</h4></td>
+                        <td></td>
+                        <td></td>
+                        <td> <a href="{{url_for('clearcart')}}" class="btn btn-sm btn-danger float-left">Clear Cart</a></td>
                     </tr>
                 </tbody>
             </table>

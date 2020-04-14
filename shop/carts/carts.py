@@ -20,7 +20,7 @@ def AddCart():
             if 'Shoppingcart' in session:
                 print(session['Shoppingcart'])
                 if product_id in session['Shoppingcart']:
-                    print("This product is already in your cart")
+                    return redirect(url_for('getCart'))
                 else:
                     session['Shoppingcart'] = MergeDicts(session['Shoppingcart'], DictItems)
                     return redirect(request.referrer)
@@ -69,3 +69,12 @@ def deleteitem(id):
     except Exception as e:
             print(e)
             return redirect(url_for('getCart'))
+
+@app.route('/clearcart')
+def clearcart():
+    try:
+        session.pop('Shoppingcart',None)
+        return redirect(url_for('hom'))
+    except Exception as e:
+            print(e)
+            
