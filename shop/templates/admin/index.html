@@ -33,7 +33,7 @@
             <th>Sr</th>
             <th>Product</th>
             <th>Price</th>
-            <th>Discount</th>
+
             <th>Image</th>
             <th>Edit</th>
             <th>Delete</th>
@@ -44,7 +44,7 @@
                 <td>{{loop.index}}</td>
                 <td>{{i.name}}</td>
                 <td>{{i.price}}</td>
-                <td>{{i.discount}} %</td>
+
                 <td><img src="{{url_for('static',filename='images/' + i.image_1)}}" width="50" height="40"></td>
                 <td>Edit</td>
                 <td>Delete</td>

@@ -6,7 +6,7 @@ from .models import User
 from shop.products.models import Addproduct
 import os
 
-@app.route('/')
+@app.route('/adminview')
 def admin():
     #if 'email' not in session:
     #    flash(f'Please login first','danger')
