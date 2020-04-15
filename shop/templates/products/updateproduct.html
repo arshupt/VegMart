@@ -15,7 +15,7 @@
 <div class="container">
     <div class="col-md-2"></div>
     <div class="col-md-8">
-        <h2 class="text-center">Add a product</h2>
+        <h2 class="text-center">Update</h2>
         {% from "_formhelpers.html" import render_field %}
         <form action="" method="POST" enctype="multipart/form-data">
             {{ render_field(form.name, class="form-control" , placeholder="Add product name")}}
@@ -24,14 +24,8 @@
             {{ render_field(form.stock, class="form-control" , placeholder="Add product stock")}}
             {{ render_field(form.description, class="form-control" , placeholder="Add product details",rows="10")}}
 
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-4">{{ render_field(form.image_1, class="form-control")}}</div>
-                    <div class="col-md-4">{{ render_field(form.image_2, class="form-control")}}</div>
-                    <div class="col-md-4">{{ render_field(form.image_3, class="form-control")}}</div>
-                </div>
-            </div>
-        <button type="submit" class="btn btn-outline-info mt-4">Add Product</button>
+            
+        <button type="submit" class="btn btn-outline-info mt-4 mb-5">Update Product</button>
         
         </form>
     </div>

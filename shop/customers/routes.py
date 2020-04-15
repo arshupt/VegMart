@@ -18,7 +18,7 @@ def customer_register():
         return redirect(url_for('customerLogin'))
     return render_template('customer/register.html', form=form)
 
-@app.route('/customer/login', methods=['GET','POST'])
+@app.route('/', methods=['GET','POST'])
 def customerLogin():
     form = CustomerLoginForm()
     if form.validate_on_submit():

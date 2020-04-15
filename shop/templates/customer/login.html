@@ -13,12 +13,13 @@
                 {{form.csrf_token}}
                 <div>
 
-                    {{ render_field(form.email) }}
-                    {{ render_field(form.password) }}
+                    {{ render_field(form.email,class="form-control") }}
+                    {{ render_field(form.password,class="form-control") }}
                     
                 </div>
-                <p><input type=submit value="Login" class="btn btn-info mt-2"></p>
+                <p><input type=submit value="Login" class="btn btn-info mt-2"><a href="/customer/register" class="ml-4">Not a User? Sign Up</a></p>
             </form>
+            
     </div>
     <div class="col-md-4"></div>
 </div>

@@ -1,9 +1,9 @@
 from flask_wtf.file import FileAllowed, FileField, FileRequired
-from wtforms import IntegerField, StringField, BooleanField, TextAreaField, validators, Form
+from wtforms import IntegerField, StringField, BooleanField, TextAreaField, validators, Form, DecimalField
 
 class Addproducts(Form):
     name=StringField('Name',[validators.DataRequired()])
-    price=IntegerField('Price',[validators.DataRequired()])
+    price=DecimalField('Price',[validators.DataRequired()])
     
     stock=IntegerField('stock',[validators.DataRequired()])
     description = TextAreaField('Description',[validators.DataRequired()])

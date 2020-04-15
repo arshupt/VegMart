@@ -6,11 +6,11 @@ from .models import User
 from shop.products.models import Addproduct
 import os
 
-@app.route('/adminview')
+@app.route('/admin')
 def admin():
-    #if 'email' not in session:
-    #    flash(f'Please login first','danger')
-    #    return redirect(url_for('login'))
+    if 'email' not in session:
+        flash(f'Please login first','danger')
+        return redirect(url_for('login'))
     products = Addproduct.query.all()
     return render_template('admin/index.html',title='Admin Page',products=products)
 
