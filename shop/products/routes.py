@@ -2,10 +2,11 @@ from flask import redirect, render_template, url_for, flash, request, session
 from shop import app,db,photos
 from .forms import Addproducts
 from .models import Addproduct
-
+from flask_login import login_required, current_user
 import secrets,os
 
 @app.route('/customer')
+@login_required
 def hom():
     products=Addproduct.query.filter(Addproduct.stock>0)
     return render_template('/products/index.html',products=products)

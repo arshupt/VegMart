@@ -1,0 +1,49 @@
+{%extends "layout.html" %}
+{% block content %}
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+
+<div class="container">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="/customer"><b>Veg Mart</b></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+        </button>
+    
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+            <a class="nav-link" href="{{url_for('getCart')}}" tabindex="-1">Cart({{session['Shoppingcart']|length}})</a>
+            </li>
+        </ul>
+             <a href="{{url_for('logout')}}" class="btn btn-primary float-right mt-3">Sign Out</a>   
+        </div>
+    </nav>
+</div>
+
+<div class="container">
+    <div class="row mt-5"></div>
+    <div class="row mt-5">
+        <div class="col-md-2"></div>
+        <div class="col-md-8 bg-success">
+            <h1 class="text-light display-1 text-center mt-5 ">Thank You For Choosing </h1>
+            <h1 class="text-light display-1 text-center">Veg Mart !!!</h1>
+        
+        </div>
+        <div class="col-md-2"></div>
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            <h2 class="text-center">Your Order is Placed Successfully. Our Customer Representative will Contact you for Delivery Details</h2>
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+    </div>
+
+</div>
+
+
+{% endblock content %}

@@ -3,6 +3,7 @@ from flask_login import login_required,current_user,login_user, logout_user
 from shop import app,db,photos,bcrypt,login_manager
 from .forms import CustomerRegisterForm, CustomerLoginForm
 from .models import Register
+from shop.products.models import Addproduct
 import secrets,os
 
 @app.route('/customer/register',methods=['POST','GET'])
@@ -25,8 +26,25 @@ def customerLogin():
         user = Register.query.filter_by(email=form.email.data).first()
         if user and bcrypt.check_password_hash(user.password, form.password.data):
             login_user(user)
-            flash('You are Logged in','success')
-            return redirect(url_for('hom'))
+            next = request.args.get('next')
+            return redirect(next or url_for('hom'))
         flash('Incorrect Email or Password','danger')
         return redirect(url_for('customerLogin'))
     return render_template('customer/login.html',form=form)
+
+@app.route('/logout')
+@login_required
+def logout():
+    logout_user()
+    session.pop('Shoppingcart',None)
+    return redirect(url_for('customerLogin'))
+
+@app.route('/checkout')
+def checkout():
+    for key, product in session['Shoppingcart'].items():
+            prod = Addproduct.query.filter_by(name=product['name']).first()
+            prod.stock=prod.stock-float(product['qty'])
+            db.session.commit()
+    session.pop('Shoppingcart',None)
+    return render_template('customer/checkout.html')
+    

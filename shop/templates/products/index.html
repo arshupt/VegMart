@@ -1,5 +1,8 @@
 {% extends 'layout.html'%}
 {% block content%}
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <div class="container">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" href="/customer"><b>Veg Mart</b></a>
@@ -13,10 +16,29 @@
             <a class="nav-link" href="{{url_for('getCart')}}" tabindex="-1">Cart({{session['Shoppingcart']|length}})</a>
             </li>
         </ul>
-        <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        </form>
+        <button type="button" class="btn btn-primary float-right mt-3" data-toggle="modal" data-target="#staticBackdrop">
+            Sign Out
+          </button>
+        <div class="modal fade" id="staticBackdrop" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="staticBackdropLabel">Sign Out</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                    <p>Are you sure? If you sign out, Your cart will be cleared! </p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  <a href="{{url_for('logout')}}" class="btn btn-primary">Sign Out</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          
         </div>
     </nav>
 </div>
@@ -31,7 +53,7 @@
                     <p class="text-center">Price:₹ {{product.price}}</p>
                 </div>
                 <div class="card-footer">
-                    <a href="{{url_for('single_page',id=product.id)}}" class="float-left btn btn-sm btn-primary">Buy Now</a>
+                    <a href="{{url_for('single_page',id=product.id)}}" class="float-left btn btn-primary">Buy Now</a>
                     
                 </div>
             </div>
@@ -39,4 +61,5 @@
         {% endfor %}
     </div>
 </div>
+
 {%endblock content%}
