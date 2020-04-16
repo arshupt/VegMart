@@ -1,0 +1,37 @@
+{%extends "layout.html" %}
+{% block content %}
+
+<div class="container">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="/admin">Admin</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        
+      </nav>
+</div>
+<div class="container mt-4">
+    <table class="table table-sm table-condensed">
+        <thead>
+            <th>Sr</th>
+            <th>Customer Name</th>
+            <th>Email</th>
+            <th>Mob No</th>
+            <th>Vegetables and Qty</th>
+        </thead>
+        <tbody>
+            {%for i in order%}
+            <tr>
+                <td>{{loop.index}}</td>
+                <td>{{i.name}}</td>
+                <td>{{i.email}}</td>
+                <td>{{i.contact}}</td>
+                <td>{{i.prodet}}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+
+    </table>
+</div>
+
+{% endblock content %}

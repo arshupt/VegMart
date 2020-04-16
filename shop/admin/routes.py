@@ -4,6 +4,7 @@ from shop import app,db,bcrypt
 from .forms import RegistrationForm,LoginForm
 from .models import User
 from shop.products.models import Addproduct
+from shop.customers.models import Orders
 import os
 
 @app.route('/admin')
@@ -39,3 +40,8 @@ def login():
         else:
             flash('Wrong password please try again','danger')
     return render_template('admin/login.html',form=form,title="Login Page")
+
+@app.route('/orders')
+def orders():
+    order = Orders.query.all()
+    return render_template('admin/orders.html', title="Orders", order=order)

@@ -2,7 +2,7 @@ from flask import redirect, render_template, url_for, flash, request, session
 from flask_login import login_required,current_user,login_user, logout_user
 from shop import app,db,photos,bcrypt,login_manager
 from .forms import CustomerRegisterForm, CustomerLoginForm
-from .models import Register
+from .models import Register, Orders
 from shop.products.models import Addproduct
 import secrets,os
 
@@ -41,10 +41,16 @@ def logout():
 
 @app.route('/checkout')
 def checkout():
+    string = ""
     for key, product in session['Shoppingcart'].items():
             prod = Addproduct.query.filter_by(name=product['name']).first()
             prod.stock=prod.stock-float(product['qty'])
+            addstring = product['name'] + ":" + product['qty'] + ";  "
+            string += addstring
             db.session.commit()
+    order = Orders(name=current_user.name, email=current_user.email,contact=current_user.contact,prodet=string)
+    db.session.add(order)
+    db.session.commit()  
     session.pop('Shoppingcart',None)
     return render_template('customer/checkout.html')
     
