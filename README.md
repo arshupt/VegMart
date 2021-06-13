@@ -13,7 +13,18 @@ To create a platform where the customer can buy vegetables online
 
 https://github.com/arshupt/VegMart
 
-  
+### Installation
+
+`pip install -r requirements.txt`
+
+### Running
+
+  ```bash
+export FLASK_APP=run.py
+export FLASK_ENV=development
+flask run
+```
+ 
 
 ### Brief Description:
 
